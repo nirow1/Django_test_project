@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1 class="text-center">Todo List</h1>
+    <h2 class="text-left">Not completed:</h2>
     <div class="capsule">
         <table class="table table-bordered">
             <thead class="thead-dark">
@@ -25,6 +26,7 @@
                         {% endif %}
                     </td>
                     <td class="buttons">
+                      <button class="btn btn-success">Done</button>
                       <button class="btn btn-primary">Updt</button>
                       <form method="POST" action="{% url 'delete_todo_item' todo.id %}">
                         {% csrf_token %}
@@ -36,4 +38,6 @@
             </tbody>
         </table>
     </div>
+    <h2 class="text-left">Completed:</h2>
+
 {% endblock %}

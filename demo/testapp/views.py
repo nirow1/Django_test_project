@@ -18,7 +18,7 @@ def todos(request):
 def add_todo_item(request):
     if request.method == 'POST':
         title = request.POST.get('title')
-        completed = request.POST.get('completed') == "on"
+        completed = False
         deadline = request.POST.get('deadline')
         if deadline:
             naive_deadline = datetime.strptime(deadline, "%Y-%m-%dT%H:%M")
