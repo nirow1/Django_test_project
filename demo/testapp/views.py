@@ -35,3 +35,10 @@ def delete_todo_item(request, todo_id):
         todo = get_object_or_404(TodoList, id=todo_id)
         todo.delete()
         return redirect("todos")
+
+def change_state(request, todo_id):
+    if request.method == "POST":
+        todo: TodoList= get_object_or_404(TodoList, id=todo_id)
+        todo.completed = True
+        todo.save()
+        return redirect(todos)
