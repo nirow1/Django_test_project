@@ -1,10 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="capsule">
-    <h1>Todo list</h1>
-    {% for todo in todos %}
-      <p>{{ todo.title }} : {% if todo.completed %} Completed {% else %} Not completed {% endif %}</p>
-    {% endfor %}
-  </div>
+    <h1 class="text-center">Todo List</h1>
+    <div class="capsule">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Task</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Deadline</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                <tr>
+                    <td>{{ todo.title }}</td>
+                    <td>{% if todo.completed %}Completed{% else %}Not Completed{% endif %}</td>
+                    <td>
+                        {% if todo.deadline_day %}
+                            {{ todo.deadline_day|date:"m/d/Y H:i" }}
+                        {% else %}
+                            No deadline
+                        {% endif %}
+                    </td>
+                    <td class="buttons">
+                      <button class="btn btn-primary">Updt</button>
+                      <form method="POST" action="{% url 'delete_todo_item' todo.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-danger">X</button>
+                      </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
