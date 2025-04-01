@@ -36,9 +36,19 @@ def delete_todo_item(request, todo_id):
         todo.delete()
         return redirect("todos")
 
+def update_todo_item(request, todo_id):
+    todo: TodoList = get_object_or_404(TodoList, id=todo_id)
+    if request.method == "POST":
+        todo.title = request.POST.get('title', todo.title)
+        todo.completed = request.POST.get('completed', todo.completed) == "on"
+        todo.deadline_day = request.POST.get('deadline_day', todo.deadline_day)
+        todo.save()
+        return redirect('todos')
+    return render(request, 'update_todo.html', {'todo': todo})
+
 def change_state(request, todo_id):
     if request.method == "POST":
         todo: TodoList= get_object_or_404(TodoList, id=todo_id)
-        todo.completed = True
+        todo.completed = not todo.completed
         todo.save()
         return redirect(todos)

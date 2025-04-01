@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Update Todo</h1>
+    <form method="POST" class="mt-4">
+        {% csrf_token %}
+        
+        <!-- Title Field -->
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ todo.title }}" maxlength="200" required>
+        </div>
+        
+        <!-- Completed Checkbox -->
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="completed" name="completed" {% if todo.completed %}checked{% endif %}>
+            <label class="form-check-label" for="completed">Completed</label>
+        </div>
+        
+        <!-- Deadline Field -->
+        <div class="mb-3">
+            <label for="deadline_day" class="form-label">Deadline</label>
+            <input type="datetime-local" class="form-control" id="deadline_day" name="deadline_day" value="{{ todo.deadline_day|date:'Y-m-d\TH:i' }}">
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Update Todo</button>
+    </form>
+</div>
+{% endblock %}
