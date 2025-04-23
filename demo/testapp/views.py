@@ -10,9 +10,12 @@ def base(request):
 
 def home(request):
     return render(request, "home_page.html")
+
 def add_shopping_list(request):
+    print("res")
     if request.method == "POST":
         # Get the shopping list name from the request
+        print("post")
         shopping_list_name = request.POST.get('shopping_list_name',
                                               'Unnamed List')  # Default to 'Unnamed List' if empty
         shopping_list = ShoppingList.objects.create(name=shopping_list_name)  # Create the ShoppingList instance
@@ -25,7 +28,7 @@ def add_shopping_list(request):
             if item_name.strip():  # Check that the item name is not empty
                 Item.objects.create(name=item_name.strip(), shopping_list=shopping_list)
 
-        return redirect('shopping_list_view')  # Redirect to a page that lists all shopping lists or success page
+        return redirect('/home_page')  # Redirect to a page that lists all shopping lists or success page
 
         # If GET, render the form to create a shopping list
     return render(request, 'add_shopping_list.html')
