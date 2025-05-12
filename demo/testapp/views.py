@@ -74,3 +74,9 @@ def change_state(request, todo_id):
         todo.completed = not todo.completed
         todo.save()
         return redirect(todos)
+
+def shopping_lists(request):
+    shopping_lists = ShoppingList.objects.prefetch_related('items').all()
+    for list in shopping_lists:
+        print(list)
+    return render(request, 'shopping_lists.html', {'shopping_lists': shopping_lists})
