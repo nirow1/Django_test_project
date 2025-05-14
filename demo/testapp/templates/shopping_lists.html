@@ -3,12 +3,36 @@
 {% block content %}
     <h1>Shopping Lists</h1>
     {% for shopping_list in shopping_lists %}
-        <h2>{{ shopping_list.name }}:</h2>
-        <ul>
-            {% for item in shopping_list.items.all %}
-                <li>{{ item.name }}</li>
-            {% endfor %}
-        </ul>
+        <div class="capsule">
+            <h2>{{ shopping_list.name }}:</h2>
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Shopping Item</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in shopping_list.items.all %}
+                        <tr>
+                            <td class="title">{{ item.name }}</td>
+                            <td> to be added</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="buttons">
+                <form method="POST">
+                {% csrf_token %}
+                <button class="btn btn-danger">Delete</button>
+                </form>
+                <form method="GET" >
+                {% csrf_token %}
+                <button class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
         
     {% endfor %}
 
