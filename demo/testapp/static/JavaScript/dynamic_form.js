@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(newInput.classList)
         newInput.name = "name";
         newInput.placeholder = "Enter item";
-        // Insert the new input field before the "+" button's container
         formContainer.appendChild(newInput);
     });
 });

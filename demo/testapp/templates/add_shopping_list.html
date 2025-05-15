@@ -12,7 +12,7 @@
                    <input type="text" class="form-control" id="list-name" name="list-name" placeholder="Enter shopping list name" maxlength="200" required>
                </div>
                <div class="mt-4" id="list-item">
-                   <input type="text" class="form-control" id="name" name="name" placeholder="Enter item" maxlength="200" required>
+                   <input type="text" class="form-control add_list_item" id="name" name="name" placeholder="Enter item" maxlength="200" required>
                </div>
 
                <div class="mb-3">
@@ -26,6 +26,6 @@
     </div>
 
     {% load static %}
-    <script src="{% static 'JavaScript/dynamic_form.js' %}"></script>
+    <script src="{% static 'JavaScript/dynamic_form.js' %}?{% now 'U' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
