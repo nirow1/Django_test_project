@@ -1,0 +1,12 @@
+.shopping_list{
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 1rem;
+    height: 400px;
+    margin-bottom: 1rem;
+    overflow-y: auto;
+}
+
+.add_list_item{
+    padding: 1rem;
+}

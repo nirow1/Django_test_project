@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Shopping Lists</h1>
     {% for shopping_list in shopping_lists %}
-        <div class="capsule">
+        <div class="shopping_list">
             <h2>{{ shopping_list.name }}:</h2>
             <table class="table table-bordered">
                 <thead class="thead-dark">
@@ -22,16 +22,16 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <div class="buttons">
-                <form method="POST">
-                {% csrf_token %}
-                <button class="btn btn-danger">Delete</button>
-                </form>
-                <form method="GET" >
-                {% csrf_token %}
-                <button class="btn btn-primary">Update</button>
-                </form>
-            </div>
+        </div>
+        <div class="buttons">
+            <form method="POST">
+            {% csrf_token %}
+            <button class="btn btn-danger">Delete</button>
+            </form>
+            <form method="GET" >
+            {% csrf_token %}
+            <button class="btn btn-primary">Update</button>
+            </form>
         </div>
         
     {% endfor %}
