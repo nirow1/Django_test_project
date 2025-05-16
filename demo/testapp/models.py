@@ -17,8 +17,8 @@ class ShoppingList(models.Model):
 class Item(models.Model):
     shopping_list = models.ForeignKey(ShoppingList, on_delete=models.CASCADE, related_name="items")
     name = models.CharField(max_length=100, blank=False)
-    """unit = models.CharField(max_length=30)
-    quantity = models.PositiveIntegerField(default=1)"""
+    quantity = models.PositiveIntegerField(default=1)
+    unit = models.CharField(max_length=30, default="g")
 
     def __str__(self):
         return self.name

@@ -9,15 +9,16 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Shopping Item</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col"></th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Unit</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for item in shopping_list.items.all %}
                         <tr>
                             <td class="title">{{ item.name }}</td>
-                            <td> to be added</td>
+                            <td class="title">{{ item.quantity }}</td>
+                            <td class="title">{{ item.unit }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
