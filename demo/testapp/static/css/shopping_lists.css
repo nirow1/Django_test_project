@@ -7,6 +7,14 @@
     overflow-y: auto;
 }
 
-.add_list_item{
+.list_item_box{
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 1rem;
+}
+
+.list_item_name{
+    min-width: 85px;
+    display: inline-block;
 }

@@ -54,18 +54,19 @@ def change_state(request, todo_id):
         return redirect(todos)
 
 def add_shopping_list(request):
-    print("res")
     if request.method == "POST":
         shopping_list_name = request.POST.get('list-name',
                                               'Unnamed List')
         shopping_list = ShoppingList.objects.create(name=shopping_list_name)
         
         # Get all the items from the form
-        item_names = request.POST.getlist('name')  # Retrieve all "name" inputs from the form
+        item_names = request.POST.getlist('name')
+        item_quantities = request.POST.getlist('quantity')
+        item_units = request.POST.getlist('unit')
 
-        for item_name in item_names:
-            if item_name.strip():  
-                Item.objects.create(name=item_name.strip(), shopping_list=shopping_list)
+        for item in item_names:
+            if item.strip():  
+                Item.objects.create(name=item.strip(), shopping_list=shopping_list)
 
         return redirect('/home_page')
 
