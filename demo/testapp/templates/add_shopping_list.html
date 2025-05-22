@@ -8,30 +8,31 @@
            <form method="POST" action="{% url 'add_shopping_list' %}"  class="mt-4">
                {% csrf_token %}
                
-               <div class="mt-4" id="shopping-list">
-                   <input type="text" class="form-control" id="list-name" name="list-name" placeholder="Enter shopping list name" maxlength="200" required>
-               </div>
-               <div class="mt-4 list_item_box"  id="list-item">
-                   <label class="list_item_name" for="name">Item Name:</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter item" maxlength="100" required>
+                <div class="mt-4" id="shopping-list">
+                    <input type="text" class="form-control" id="list-name" name="list-name" placeholder="Enter shopping list name" maxlength="200" required>
+                </div>
+                <div id="list-item">
+                    <div class="mt-4 list_item_box">
+                        <label class="list_item_name" for="name">Item Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter item" maxlength="100" required>
 
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" class="form-control" id="quantity" name="quantity" min="1" value="1" required>
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" value="1" required>
 
-                    <label for="unit">Unit:</label>
-                    <select class="form-control" id="unit" name="unit">
-                        <option value="g">g</option>
-                        <option value="ml">ml</option>
-                        <option value="pcs">pcs</option>
-                    </select>
-               </div>
-
-               <div class="mb-3">
-                   <button type="button" class="btn btn-primary" id="add-item-btn">+</button>
-               </div>
-               <div class="mb-3">
-                   <button type="submit" class="btn btn-primary" id="finish-list">Add List</button>
-               </div>
+                            <label for="unit">Unit:</label>
+                            <select class="form-control" id="unit" name="unit">
+                                <option value="g">g</option>
+                                <option value="ml">ml</option>
+                                <option value="pcs">pcs</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-primary" id="add-item-btn">+</button>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" id="finish-list">Add List</button>
+                </div>
            </form>
        </div>
     </div>

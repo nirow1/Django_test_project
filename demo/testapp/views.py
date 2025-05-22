@@ -59,7 +59,7 @@ def add_shopping_list(request):
                                               'Unnamed List')
         shopping_list = ShoppingList.objects.create(name=shopping_list_name)
         
-        # Get all the items from the form
+        # Get all information of the items from the form
         item_names = request.POST.getlist('name')
         item_quantities = request.POST.getlist('quantity')
         item_units = request.POST.getlist('unit')
