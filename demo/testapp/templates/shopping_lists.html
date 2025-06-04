@@ -25,7 +25,7 @@
             </table>
         </div>
         <div class="shopping_buttons">
-            <form method="POST">
+            <form method="POST" action="{% url 'delete_shopping_list' shopping_list.id %}">
             {% csrf_token %}
             <button class="btn btn-danger">Delete</button>
             </form>

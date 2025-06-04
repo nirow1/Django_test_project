@@ -80,7 +80,7 @@ def delete_shopping_list(request, list_id):
     if request.method == "POST":
         shopping_list = get_object_or_404(ShoppingList, id=list_id)
         shopping_list.delete()
-        return redirect("todos")
+        return redirect("shopping_lists.html")
 
 def shopping_lists(request):
     shopping_lists = ShoppingList.objects.prefetch_related('items').all()
