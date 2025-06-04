@@ -12,4 +12,5 @@ urlpatterns = [
     path('delete/<int:todo_id>/', views.delete_todo_item, name='delete_todo_item'),
     path('change_state/<int:todo_id>/', views.change_state, name='change_state'),
     path('update_todo/<int:todo_id>/', views.update_todo_item, name='update_todo_item'),
+    path('delete_list/<int:list_id>/', views.delete_shopping_list, name='delete_shopping_list')
 ]

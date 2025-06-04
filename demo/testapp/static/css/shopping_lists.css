@@ -3,7 +3,7 @@
     border-radius: 10px;
     padding: 1rem;
     height: 400px;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
     overflow-y: auto;
 }
 
@@ -17,4 +17,9 @@
 .list_item_name{
     min-width: 85px;
     display: inline-block;
+}
+
+.shopping_buttons{
+    display: flex;
+    margin-bottom: 1.5rem;
 }

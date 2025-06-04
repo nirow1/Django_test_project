@@ -64,13 +64,23 @@ def add_shopping_list(request):
         item_quantities = request.POST.getlist('quantity')
         item_units = request.POST.getlist('unit')
 
-        for item in item_names:
-            if item.strip():  
-                Item.objects.create(name=item.strip(), shopping_list=shopping_list)
+        for name, quantity, unit in zip(item_names, item_quantities, item_units):
+            Item.objects.create(
+                shopping_list=shopping_list,
+                name=name,
+                quantity=int(quantity),
+                unit=unit
+            )
 
         return redirect('/home_page')
 
     return render(request, 'add_shopping_list.html')
+
+def delete_shopping_list(request, list_id):
+    if request.method == "POST":
+        shopping_list = get_object_or_404(ShoppingList, id=list_id)
+        shopping_list.delete()
+        return redirect("todos")
 
 def shopping_lists(request):
     shopping_lists = ShoppingList.objects.prefetch_related('items').all()
