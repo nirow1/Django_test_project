@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+   <div class="container mt-5">
+       <h1 class="text-center">Add a shopping list</h1>
+       <!-- Main form container -->
+       <div id="form-container">
+           <form method="POST" action="{% url 'add_shopping_list' %}"  class="mt-4">
+               {% csrf_token %}
+               
+                <div class="mt-4" id="shopping-list">
+                    <input type="text" class="form-control" id="list-name" name="list-name" placeholder="Enter shopping list name" maxlength="200" required>
+                </div>
+                <div id="list-item">
+                    {% for item in items %}
+                        <div class="mt-4 list_item_box">
+                            <input type="hidden" name="item_id" value="{{ item.id }}">
+                            
+                            <label for="name">Item Name:</label>
+                            <input type="text" class="form-control" name="name" value="{{ item.name }}" required>
+
+                            <label for="quantity">Quantity:</label>
+                            <input type="number" class="form-control" name="quantity" value="{{ item.quantity }}" min="1" required>
+
+                            <label for="unit">Unit:</label>
+                            <select class="form-control" name="unit">
+                                <option value="g" {% if item.unit == "g" %}selected{% endif %}>g</option>
+                                <option value="ml" {% if item.unit == "ml" %}selected{% endif %}>ml</option>
+                                <option value="pcs" {% if item.unit == "pcs" %}selected{% endif %}>pcs</option>
+                            </select>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-primary" id="add-item-btn">+</button>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary" id="finish-list">Add List</button>
+                </div>
+           </form>
+       </div>
+    </div>
+
+    {% load static %}
+    <script src="{% static 'JavaScript/dynamic_form.js' %}?{% now 'U' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

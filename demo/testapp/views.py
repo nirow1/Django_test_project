@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.utils.timezone import make_aware
@@ -81,6 +82,37 @@ def delete_shopping_list(request, list_id):
         shopping_list = get_object_or_404(ShoppingList, id=list_id)
         shopping_list.delete()
         return redirect("shopping_lists.html")
+    
+def update_shopping_list(request, list_id):
+    shopping_list: ShoppingList = get_object_or_404(ShoppingList, id=list_id)
+    items: List[Item] = shopping_list.items.all()
+
+    if request.method == "POST":
+        shopping_list.name = request.POST.get("list-name")
+        shopping_list.save()
+
+        item_names = request.POST.getlist('name')
+        item_quantities = request.POST.getlist('quantity')
+        item_units = request.POST.getlist('unit') 
+        item_ids = request.POST.getlist('item_id')
+
+        for i in range(len(item_names)):
+            if item_ids[i]:
+                item =  Item.objects.get(id = item_ids[i])
+                item.name = item_names[i]
+                item.quantity = int(item_quantities[i])
+                item.unit = item_units[i]
+                item.save()
+            else:
+                Item.objects.create(
+                    shopping_list = shopping_list,
+                    name = item_names[i],
+                    quantity = int(item_quantities[i]),
+                    unit = item_units[i],
+                )   
+
+        return redirect("shopping_lists.html")
+    return render(request, 'update_shopping_list.html', {'shopping_list': shopping_list, "items": items})
 
 def shopping_lists(request):
     shopping_lists = ShoppingList.objects.prefetch_related('items').all()

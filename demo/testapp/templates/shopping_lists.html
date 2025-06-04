@@ -29,7 +29,7 @@
             {% csrf_token %}
             <button class="btn btn-danger">Delete</button>
             </form>
-            <form method="GET" >
+            <form method="GET" action="{% url 'update_shopping_list' shopping_list.id %}">
             {% csrf_token %}
             <button class="btn btn-primary">Update</button>
             </form>
