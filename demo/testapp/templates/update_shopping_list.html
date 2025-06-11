@@ -2,14 +2,14 @@
 
 {% block content %}
    <div class="container mt-5">
-       <h1 class="text-center">Add a shopping list</h1>
+       <h1 class="text-center">Update a shopping list</h1>
        <!-- Main form container -->
        <div id="form-container">
-           <form method="POST" action="{% url 'add_shopping_list' %}"  class="mt-4">
+           <form method="POST" action="{% url 'update_shopping_list' shopping_list.id %}"  class="mt-4">
                {% csrf_token %}
                
                 <div class="mt-4" id="shopping-list">
-                    <input type="text" class="form-control" id="list-name" name="list-name" placeholder="Enter shopping list name" maxlength="200" required>
+                    <input type="text" class="form-control" id="list-name" name="list-name" value= "{{shopping_list.name}}" maxlength="200" required>
                 </div>
                 <div id="list-item">
                     {% for item in items %}
@@ -27,6 +27,7 @@
                                 <option value="g" {% if item.unit == "g" %}selected{% endif %}>g</option>
                                 <option value="ml" {% if item.unit == "ml" %}selected{% endif %}>ml</option>
                                 <option value="pcs" {% if item.unit == "pcs" %}selected{% endif %}>pcs</option>
+                                <option value="l" {% if item.unit == "l" %}selected{% endif %}>l</option>
                             </select>
                         </div>
                     {% endfor %}
@@ -35,7 +36,7 @@
                     <button type="button" class="btn btn-primary" id="add-item-btn">+</button>
                 </div>
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-primary" id="finish-list">Add List</button>
+                    <button type="submit" class="btn btn-primary" id="finish-list">Update list</button>
                 </div>
            </form>
        </div>
