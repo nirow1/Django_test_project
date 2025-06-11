@@ -95,15 +95,16 @@ def update_shopping_list(request, list_id):
         item_quantities = request.POST.getlist('quantity')
         item_units = request.POST.getlist('unit') 
         item_ids = request.POST.getlist('item_id')
-
+        print(item_ids)
         for i in range(len(item_names)):
-            if item_ids[i]:
-                item =  Item.objects.get(id = item_ids[i])
-                item.name = item_names[i]
-                item.quantity = int(item_quantities[i])
-                item.unit = item_units[i]
-                item.save()
-            else:
+            try:
+                if item_ids[i]:
+                    item =  Item.objects.get(id = item_ids[i])
+                    item.name = item_names[i]
+                    item.quantity = int(item_quantities[i])
+                    item.unit = item_units[i]
+                    item.save()
+            except:
                 Item.objects.create(
                     shopping_list = shopping_list,
                     name = item_names[i],

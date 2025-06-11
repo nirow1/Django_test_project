@@ -50,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const options = [
             { value: "g", text: "g" },
             { value: "ml", text: "ml" },
-            { value: "pcs", text: "pcs" }
+            { value: "pcs", text: "pcs" },
+            { value: "l", text: "l" }
         ];
         options.forEach(({ value, text }) => {
             newInputUnit.appendChild(new Option(text, value));
