@@ -1,8 +1,9 @@
 from datetime import datetime
 from typing import List
 
-from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.timezone import make_aware
+from django.contrib.auth import authenticate, login, logout
 
 from .models import TodoList, ShoppingList, Item
 
@@ -120,3 +121,9 @@ def shopping_lists(request):
     for list in shopping_lists:
         pass
     return render(request, 'shopping_lists.html', {'shopping_lists': shopping_lists})
+
+def login_user(request):
+    pass
+
+def logout_user(request):
+    pass

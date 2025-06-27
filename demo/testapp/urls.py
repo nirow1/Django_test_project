@@ -16,4 +16,7 @@ urlpatterns = [
     path("add_shopping_list/", views.add_shopping_list, name="add_shopping_list"),
     path('delete_list/<int:list_id>/', views.delete_shopping_list, name='delete_shopping_list'),
     path('update_list/<int:list_id>/', views.update_shopping_list, name='update_shopping_list'),
+
+    #path('login/', views.login_user, name='login'),
+    #path('logout/', views.logout_user, name='logout'),
 ]
