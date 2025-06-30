@@ -11,6 +11,16 @@ def base(request):
     return render(request, "base.html")
 
 def home(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user=user)
+            return redirect('Home page')
+        else:
+            return redirect('Home page')
     return render(request, "home_page.html")
 
 def todos(request):
