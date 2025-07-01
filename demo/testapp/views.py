@@ -132,8 +132,6 @@ def shopping_lists(request):
         pass
     return render(request, 'shopping_lists.html', {'shopping_lists': shopping_lists})
 
-def login_user(request):
-    pass
-
 def logout_user(request):
-    pass
+    logout(request)
+    return redirect('/home_page')
