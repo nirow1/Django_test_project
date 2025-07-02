@@ -9,15 +9,16 @@
     <div class="col-md-6 offset-md-3">
         <h1>Login</h1>
         <br>
-        <form method="POST" action ="{% url 'Home page'%}">
+        <form method="POST" action="{% url 'Home page' %}">
             {% csrf_token %}
             <div class="mb-3">
-                <input type="text" class="form-control" name="username", placeholder="Username" required> 
+                <input type="text" class="form-control" name="username" placeholder="Username" required> 
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control" name="password", placeholder="Password" required>
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
+            <a href="{% url 'register' %}" class="btn btn-secondary ms-2">Register</a>
         </form>
 
     </div>

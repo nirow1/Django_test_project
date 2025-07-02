@@ -1,10 +1,9 @@
 from datetime import datetime
 from typing import List
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.timezone import make_aware
 from django.contrib.auth import authenticate, login, logout
-
+from .forms import SignUpForm
 from .models import TodoList, ShoppingList, Item
 
 def base(request):
@@ -135,3 +134,17 @@ def shopping_lists(request):
 def logout_user(request):
     logout(request)
     return redirect('/home_page')
+
+def register_user(request):
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect("/home_page")
+    else:
+        form = SignUpForm()
+    return render(request, 'register_user.html', {'form': form})
