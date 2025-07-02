@@ -4,45 +4,52 @@
     <h1 class="text-center">Todo List</h1>
     <h2 class="text-left">Not completed:</h2>
     <div class="capsule">
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Task</th>
-                    <th scope="col">Deadline</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for todo in todos %}
-                {% if not todo.completed %}
+        <div class="todo-table">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
                     <tr>
-                        <td class="title">{{ todo.title }}</td>
-                        <td>
-                            {% if todo.deadline_day %}
-                                {{ todo.deadline_day|date:"m/d/Y H:i" }}
-                            {% else %}
-                                No deadline
-                            {% endif %}
-                        </td>
-                        <td class="buttons">
-                          <form method="POST" action="{% url 'change_state' todo.id %}">
-                            {% csrf_token %}
-                            <button class="btn btn-success">Done</button>
-                          </form>
-                          <form method="GET" action="{% url 'update_todo_item' todo.id %}">
-                            {% csrf_token %}
-                            <button class="btn btn-primary">Updt</button>
-                          </form>
-                          <form method="POST" action="{% url 'delete_todo_item' todo.id %}">
-                            {% csrf_token %}
-                            <button class="btn btn-danger">X</button>
-                          </form>
-                        </td>
+                        <th scope="col">Task</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col"></th>
                     </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for todo in todos %}
+                    {% if not todo.completed %}
+                        <tr>
+                            <td class="title">{{ todo.title }}</td>
+                            <td>
+                                {% if todo.deadline_day %}
+                                    {{ todo.deadline_day|date:"m/d/Y H:i" }}
+                                {% else %}
+                                    No deadline
+                                {% endif %}
+                            </td>
+                            <td class="buttons">
+                            <form method="POST" action="{% url 'change_state' todo.id %}">
+                                {% csrf_token %}
+                                <button class="btn btn-success">Done</button>
+                            </form>
+                            <form method="GET" action="{% url 'update_todo_item' todo.id %}">
+                                {% csrf_token %}
+                                <button class="btn btn-primary">Updt</button>
+                            </form>
+                            <form method="POST" action="{% url 'delete_todo_item' todo.id %}">
+                                {% csrf_token %}
+                                <button class="btn btn-danger">X</button>
+                            </form>
+                            </td>
+                        </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <form method="GET" action="{% url 'add_todo_item' %}">
+            {% csrf_token %}
+            <button class="btn btn-primary">Add todo</button>
+        </form>
     </div>
     <h2 class="text-left">Completed:</h2>
     <div class="capsule">
