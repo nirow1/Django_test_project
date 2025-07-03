@@ -7,11 +7,14 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     {% load static %}
+    <link rel="stylesheet" href="{% static '/css/home.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static '/css/base.css' %}?{% now 'U' %}">
     <link rel="stylesheet" href="{% static '/css/todos.css' %}?{% now 'U' %}">
     <link rel="stylesheet" href="{% static '/css/shopping_lists.css' %}?{% now 'U' %}">
+    <script src="https://js-dos.com/cdn/js-dos-api.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">BrandLogo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,12 +31,10 @@
                     <li>
                         <a class="nav-link" href="/shopping_lists/">Shopping lists</a>
                     </li>
-                    {% if user.is_authenticated %}
-                        <li>
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                        </li>
-                    {% endif %}
                 </ul>
+                {% if user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                {% endif %}
             </div>
         </div>
     </nav>

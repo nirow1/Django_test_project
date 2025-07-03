@@ -1,27 +1,34 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
     {% if user.is_authenticated  %}
-    <h1>Home Page</h1>
+        <h1>Home Page</h1>
+        <script src="https://js-dos.com/cdn/js-dos-api.js"></script>
+        <div id="dosbox"></div>
+        <script>
+            Dos(document.getElementById("dosbox"), {
+                zip: "{% static 'doom/DOOM.zip' %}",
+                autoexec: ["dm.exe"]
+            });
+        </script>
 
     {% else %}
+        <div class="col-md-6 offset-md-3">
+            <h1>Login</h1>
+            <br>
+            <form method="POST" action="{% url 'Home page' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="username" placeholder="Username" required> 
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <a href="{% url 'register' %}" class="btn btn-secondary ms-2">Register</a>
+            </form>
 
-    <div class="col-md-6 offset-md-3">
-        <h1>Login</h1>
-        <br>
-        <form method="POST" action="{% url 'Home page' %}">
-            {% csrf_token %}
-            <div class="mb-3">
-                <input type="text" class="form-control" name="username" placeholder="Username" required> 
-            </div>
-            <div class="mb-3">
-                <input type="password" class="form-control" name="password" placeholder="Password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-            <a href="{% url 'register' %}" class="btn btn-secondary ms-2">Register</a>
-        </form>
-
-    </div>
+        </div>
     {% endif %}
-
 {% endblock %}
